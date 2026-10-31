@@ -1,0 +1,103 @@
+# class zomato:
+#     discount=0.2
+#     coupon_code="py20"
+#     res_name=[]
+#     res_no=0
+#     def __init__(self,res_name,res_menu):
+#         self.res_name=res_name
+#         zomato.res_no+=1
+#         self.res_menu=res_menu
+#         self.res_id=zomato.res_no
+# paradise=zomato("paradise",{"Chicken Biriyani":200,
+#                             "Mutton":400,
+#                             "coke":40})
+# Pista_House= zomato("Pista House",
+#                   {"Chicken Biryani" : 250,
+#                    "Mutton Biryani" : 290,
+#                    "Apricot Delight" : 200})
+# KFC = zomato("KFC",
+#                   {"Chicken Burger" : 200,
+#                    "Chicken Wings" : 350,
+#                    "Coke" : 40,
+#                    "Fries" : 70})
+# def order(item_no,resturant):
+#     order_item=list(resturant.res_menu.items())
+#     cost=order_item[item_no-1][1]
+#     print("Your cart is :",cost)
+#     print("Do you have a coupn code?")
+#     cc=input("Y/N?")
+#     if cc== "Y":
+#         code=input("Enter your code:")
+#         if code==zomato.coupon_code:
+#             cost=cost-cost*zomato.discount
+#         else:
+#             print("Invalid coupn code")
+#     print("Your final cart bill is:",cost)
+# c=0
+# for i in zomato.res_name:
+#     c+=1
+#     print(c,":",i)
+# choice=int(input("Enter your resturant number:"))
+# if choice ==1:
+#     c=0
+#     for i in paradise.res_menu.items():
+#         c+=1
+#         print(c,":",i)
+#     item_no=int(input("enter your item number:"))
+#     order(item_no,paradise)
+# elif choice==2:
+#     c=0
+#     for i in Pista_House.res_menu.items():
+#         c+=1
+#         print(c,":",i)
+#     item_no=int(input("Enter your item number:"))
+#     order(item_no,Pista_House)
+# elif choice==3:
+#     c=0
+#     for i in KFC.res_menu.items():
+#         c+=1
+#         print(c,":",i)
+#     item_no=int(input("Enter your item number:"))
+#     order(item_no,KFC)
+# else:
+#     print("Invalid choice")
+#
+# class Product:
+#     variable_store="ShopEasy"
+#     def __init__(self,name,price,quantity):
+#         self.name=name
+#         self.price=price
+#         self.quantity=quantity
+#         total_price=price*quantity
+#         self.product_details={
+#             "name":name,
+#             "price":price,
+#             "quantity":quantity,
+#             "final price":total_price,
+#         }
+# p1=Product("Samsung",15000,2)
+# p2=Product("Apple",200000,1)
+#
+# p1.price=450000
+# p1.product_details["price"]=40000
+# print(p1.__dict__)
+# print(p2.__dict__)
+
+products = []
+class Product:
+    store_name = "ABC Store"
+    def __init__(self,name,price,quantity):
+        self.name = name
+        if price > 0 and quantity > 0:
+            self.price = price
+            self.quantity = quantity
+        else:
+            print("Invalid Price or Quantity")
+        products.append(name)
+p1 = Product("Laptop",100000, 2)
+p2 = Product("Mouse", 600, -5)
+p3 = Product("PS5", 500000, 40)
+print(p1.__dict__)
+print(p2.__dict__)
+print(p3.__dict__)
+print(products)

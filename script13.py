@@ -1,0 +1,308 @@
+# class A:
+#     c1="Hello"
+#     c2=123
+#     def __init__(self,x,y):
+#         self.x=x
+#         self.y=y
+# class B(A):
+#     c3=True
+#     def __init__(self,z,x,y):
+#         self.z=z
+#         super().__init__(x,y)
+# b=B(10,20,30)
+# print(b.c1)
+# print(b.c2)
+# print(b.c3)
+# print("z:",b.z)
+# print("Y:",b.y)
+# print("X:",b.x)
+#
+# class A:
+#     def __init__(self):
+#         print("A Constructor")
+# class B:
+#     def __init__(self):
+#         print("B Constructor")
+# class C(A,B):
+#     def __init__(self):
+#         print("C Constructor")
+#         super().__init__()
+# c=C()
+# print(C.mro())
+# print(B.mro())
+# for a in C.mro():
+#     print(a.__name__)
+import math
+from calendar import error
+from idlelib.debugobj import dispatch
+
+from decorator import balance
+
+
+#
+# class A:
+#     def __init__(self):
+#         print("This is init A")
+#     def f1(self):
+#         print("F1 Movie")
+# class B(A):
+#     def __init__(self):
+#         print("This is init B")
+#         super().__init__()
+#     def f2(self):
+#         self.f1()
+#         print("F2 Movie")
+# obj1=B()
+# obj1.f2()
+#
+# class Person:
+#     def __init__(self,name,age):
+#         self.name=name
+#         self.age=age
+#     def describe(self):
+#         return f"{self.name} age {self.age}"
+# class Employee(Person):
+#     def __init__(self,name,age,department):
+#         super().__init__(name,age)
+#         self.department=department
+#     def describe(self):
+#         base=super().describe()
+#         return f"{base} dep:{self.department}"
+# class Manager(Employee):
+#     def __init__(self,name,age,department,team_size):
+#         super().__init__(name,age, department)
+#         self.team_size=team_size
+#     def describe(self):
+#         base=super().describe()
+#         return f"{base},team:{self.team_size} people"
+# m1=Manager("Khadri",22,"AI",7)
+# print(m1.describe())
+#
+# class Vehicle:
+#     def __init__(self,make,model,year):
+#         self.make=make
+#         self.model=model
+#         self.year=year
+#     def info(self):
+#         print("Make:",self.make)
+#         print("Model:",self.model)
+#         print("Year:",self.year)
+# class Car(Vehicle):
+#     def __init__(self,make,model,year,door):
+#         super().__init__(make,model,year)
+#         self.door=door
+#     def info(self):
+#         super().info()
+#         print("Door:",self.door)
+# class ElectricCar(Car):
+#     def __init__(self,make,model,year,door,battery):
+#         super().__init__(make,model, year, door)
+#         self.battery=battery
+#     def info(self):
+#         super().info()
+#         print("Battery:",self.battery)
+# c1=ElectricCar("Toyota","Innova",2022,9,500)
+# print("Details:")
+# c1.info()
+#
+# class Bank:
+#     def __init__(self,balance):
+#         self.balance=balance
+#     def deposit(self,amount):
+#         self.balance+=amount
+#         print(f"Dear {self.name},\n Your Account has been credited with Rs{amount},Successfully")
+#     def withdraw(self,amount):
+#         self.balance-=amount
+#         print(f"Dear {self.name},\n Your Account hab been debited with Rs {amount}Successfully")
+#     def check_balance(self):
+#         print(f"Dear {self.name},\n Your Available balance is Rs{self.balance}")
+# class User(Bank):
+#     def __init__(self,name,balance):
+#         super().__init__(balance)
+#         self.name=name
+# w=User("Khadri",1000)
+# print(w.__dict__)
+# print(w.name)
+# w.deposit(500)
+# w.withdraw(400)
+# w.check_balance()
+#
+# class A:
+#     def __init__(self):
+#         self.x=10
+#         self.y=20
+#         self.z=30
+#         self.count=40
+#     def check_even(self,val):
+#         if val%2==0:
+#             print("even")
+#         else:
+#             print("Odd")
+# class B:
+#     def __init__(self,count):
+#         self.count=count
+#     def m1(self):
+#         obj=A()
+#         obj.check_even(self.count)
+# b=B(300)
+# print(b.count)
+# b.m1()
+# print(b.count)
+
+class PDF:
+    def send(self):
+        return "PDF IS SENDING"
+class EXCEL:
+    def send(self):
+        return "EXCEL IS SENDING"
+class Email:
+    def send(self):
+        return "EMAIL IS SENDING"
+def dispatch(item):
+    print(item.send())
+for obj in(PDF(),EXCEL(),Email()):
+    dispatch(obj)
+
+class Circle:
+    def __init__(self,radius):
+        self.radius=radius
+    def area(self):
+        return math.pi * self.radius*self.radius
+class Rectangle:
+    def __init__(self,l,w):
+        self.l=l
+        self.w=w
+    def area(self):
+        return self.l*self.w
+class Triangle:
+    def __init__(self,b,h):
+        self.b=b
+        self.h=h
+    def area(self):
+        return 0.5*self.b*self.h
+class Hexagon:
+    def __init__(self,side):
+        self.side=side
+    def area(self):
+        return (3 * math.sqrt(3)/2)*self.side**2
+def total_area(shapes):
+    t=0
+    for s in shapes:
+        t+=s.area()
+    return t
+shape=[Circle(2),Rectangle(4,5),Triangle(6,3),Hexagon(2)]
+print("Total Area:",round(total_area(shape),2))
+
+
+class BankAccount:
+    def __init__(self,name,balance):
+        self.name=name
+        self.__balance=balance
+    def deposit(self,amount):
+        self.__balance+=amount
+    @property
+    def check(self):
+        return self.__balance
+b1=BankAccount("Roshan",1000)
+b1.deposit(2000)
+print(b1.check)
+
+class Bank:
+    def __init__(self,balance):
+        self.__balance=balance
+    @property
+    def balance(self):
+        return self.__balance
+    @balance.setter
+    def balance(self,value):
+        if value <0:
+            raise ValueError("Balance can not be negative")
+        self.__balance=balance
+    def withdraw(self,amount):
+        if amount<0:
+            raise ValueError("The amount should be in positive")
+        elif amount>self.__balance:
+            raise ValueError("Insufficient amount")
+        self.__balance-=amount
+    def deposit(self,amount):
+        if amount<=0:
+            raise ValueError("deposit amount is negative")
+        self.__balance+=amount
+b=Bank(1000)
+print("Initial balance:",b.balance)
+b.deposit(500)
+print(b.balance)
+b.withdraw(300)
+print(b.balance)
+for operation,amount in[
+    ("deposit",0),
+    ("deposit",-200),
+    ("withdraw",0),("withdraw",-230),("withdraw",2000)
+]:
+    try :
+        if operation=="deposit":
+            b.deposit(amount)
+        else:
+            b.withdraw(amount)
+    except ValueError as e:
+        print("error:",e)
+try :
+    b.balance=-500
+except ValueError as e:
+    print("Error:",e)
+
+print("Final Balance:",b.balance)
+
+# Create a class Circle with a private __radius. Add @property radius (getter) and
+# @radius.setter that validates the radius is positive. Add a computed @property area
+# and @property circumference. Show that changing radius automatically updates
+# both computed properties.
+class Circle:
+    def __init__(self,radius):
+        self.__radius=radius
+    @property
+    def radius(self):
+        return self.__radius
+    @radius.setter
+    def radius(self,value):
+        if value<=0:
+            raise ValueError("the value should be in negative")
+        self.__radius=value
+    @property
+    def area(self):
+        return math.pi * self.radius**2
+    @property
+    def circumference(self):
+        return 2*math.pi*self.radius
+a=Circle(2)
+print("radius:",round(a.radius))
+print("Area:",round(a.area,2))
+print("Circumference:",round(a.circumference,2))
+
+
+class Person:
+    def __init__(self,first_name,last_name):
+        self.first_name=first_name
+        self.last_name=last_name
+    @property
+    def first_name(self):
+        return self.__first_name
+    @first_name.setter
+    def first_name(self, value):
+        self.__first_name = value
+    @property
+    def last_name(self):
+        return self.__last_name
+    @last_name.setter
+    def last_name(self,value):
+        self.__last_name=value
+    @property
+    def full_name(self):
+        return self.first_name +" "+ self.last_name
+    @full_name.setter
+    def full_name(self,value):
+        self.first_name,self.last_name=value.split(" ",1)
+p1=Person("khadri","shaik")
+print(p1.first_name)
+print(p1.last_name)
+print(p1.full_name)
