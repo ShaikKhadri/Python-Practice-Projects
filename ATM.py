@@ -41,16 +41,7 @@
 #         else:
 #             print(f"{5}")
 
-a=int(input())
-b=int(input())
-sum=0
-c=0
-if a>b:
-    print("INVALID RANGE")
-else:
-    for i in range(a+1,b):
-        if i%2==0:
-            sum+=i
+
             c+=1
     if c==0:
         print("NO NUMBERS")
